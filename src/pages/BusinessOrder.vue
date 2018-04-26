@@ -1,61 +1,67 @@
 <template>
 	<div id="business_order">
-	  <el-table
-	    :data="tableData"
-	    border
-        stripe=true
-	    style="width: 100%">
-        <el-table-column type="expand">
-            <template slot-scope="props">
-                <el-form label-position="left" inline class="table-expand">
-                    <el-form-item label="剩余单数">
-                        <span>{{ props.row.left }}</span>
-                    </el-form-item>
-                    <el-form-item label="产品图片">
-                        <span>{{ props.row.pic }}</span>
-                    </el-form-item>
-                    <el-form-item label="关键字">
-                        <span>{{ props.row.keywords }}</span>
-                    </el-form-item>
-                    <el-form-item label="店铺名">
-                        <span>{{ props.row.shop }}</span>
-                    </el-form-item>
-                    <el-form-item label="描述">
-                        <span>{{ props.row.desc }}</span>
-                    </el-form-item>
-                </el-form>
-            </template>
-        </el-table-column>
-	    <el-table-column type="index"></el-table-column>
-	    <el-table-column prop="date" label="创建时间" sortable width="150"  
-            align="center"
-            :filters="filters"
-            :filter-method="filterHandler">
-        </el-table-column>
-	    <el-table-column prop="name" label="名称" min-width="220" align="center"></el-table-column>
-	    <el-table-column prop="businessman" label="业务员" sortable="true" min-width="100" align="center"></el-table-column>
-	    <el-table-column prop="customer" label="客户" sortable=true min-width="100" align="center"></el-table-column>
-        <el-table-column prop="goal_num" label="目标单数" sortable=true align="right"  width="120"></el-table-column>
-        <!-- <el-table-column prop="complete" label="完成单数" align="right" width="100"></el-table-column> -->
-        <el-table-column label="完成单数" align="right" width="100">
-            <template slot-scope="scope">
-                <router-link to="aa" :businessId="scope.row.business_id ">{{ scope.row.complete }}</router-link>
-            </template> 
-        </el-table-column>
-        <el-table-column prop="goal_days" label="目标天数" align="right"  width="100"></el-table-column>
-	    <!-- <el-table-column prop="left" label="剩余单数"></el-table-column> -->
-	    <!-- <el-table-column prop="pic" label="产品图片"></el-table-column> -->
-	    <!-- <el-table-column prop="desc" label="描述"></el-table-column> -->
-	    <!-- <el-table-column prop="keywords" label="关键字"></el-table-column> -->
-	    <!-- <el-table-column prop="shop" label="店铺名"></el-table-column> -->
-	    <!-- 描述里面包括关键字、店铺名 -->
-	    <el-table-column prop="payment" label="应付金额" align="right"></el-table-column>
-	    <el-table-column prop="half_payment" label="已付金额" align="right"></el-table-column>
-	  </el-table>
+        <ul>
+            <li @click="addBusinessOrder">新增业务单</li>
+        </ul>
+        <el-table
+    	    :data="tableData"
+    	    border
+            stripe
+    	    style="width: 100%">
+            <el-table-column type="expand">
+                <template slot-scope="props">
+                    <el-form label-position="left" inline class="table-expand">
+                        <el-form-item label="剩余单数">
+                            <span>{{ props.row.left }}</span>
+                        </el-form-item>
+                        <el-form-item label="产品图片">
+                            <span>{{ props.row.pic }}</span>
+                        </el-form-item>
+                        <el-form-item label="关键字">
+                            <span>{{ props.row.keywords }}</span>
+                        </el-form-item>
+                        <el-form-item label="店铺名">
+                            <span>{{ props.row.shop }}</span>
+                        </el-form-item>
+                        <el-form-item label="描述">
+                            <span>{{ props.row.desc }}</span>
+                        </el-form-item>
+                    </el-form>
+                </template>
+            </el-table-column>
+    	    <el-table-column type="index"></el-table-column>
+    	    <el-table-column prop="date" label="创建时间" sortable width="150"  
+                align="center"
+                :filters="filters"
+                :filter-method="filterHandler">
+            </el-table-column>
+    	    <el-table-column prop="name" label="名称" min-width="220" align="center"></el-table-column>
+    	    <el-table-column prop="businessman" label="业务员" sortable="true" min-width="100" align="center"></el-table-column>
+    	    <el-table-column prop="customer" label="客户" sortable=true min-width="100" align="center"></el-table-column>
+            <el-table-column prop="goal_num" label="目标单数" sortable=true align="right"  width="120"></el-table-column>
+            <!-- <el-table-column prop="complete" label="完成单数" align="right" width="100"></el-table-column> -->
+            <el-table-column label="完成单数" align="right" width="100">
+                <template slot-scope="scope">
+                    <router-link to="aa" :businessId="scope.row.business_id ">{{ scope.row.complete }}</router-link>
+                </template> 
+            </el-table-column>
+            <el-table-column prop="goal_days" label="目标天数" align="right"  width="100"></el-table-column>
+    	    <!-- <el-table-column prop="left" label="剩余单数"></el-table-column> -->
+    	    <!-- <el-table-column prop="pic" label="产品图片"></el-table-column> -->
+    	    <!-- <el-table-column prop="desc" label="描述"></el-table-column> -->
+    	    <!-- <el-table-column prop="keywords" label="关键字"></el-table-column> -->
+    	    <!-- <el-table-column prop="shop" label="店铺名"></el-table-column> -->
+    	    <!-- 描述里面包括关键字、店铺名 -->
+    	    <el-table-column prop="payment" label="应付金额" align="right"></el-table-column>
+    	    <el-table-column prop="half_payment" label="已付金额" align="right"></el-table-column>
+        </el-table>
+
+        <business-form-box  :dialogFormVisible="showBusinessOrderForm" @update:dialogFormVisible="updateShowBusinessOrderForm"></business-form-box>
 	</div>
 </template>
 <script>
 import Util from '../util.js'
+import BusinessFormBox from './BusinessFormBox.vue'
 /**
  * [generateFilters 生成最近7天的过滤日期]
  * @return {[type]} [description] 如[{text: '2016-05-01', value: '2016-05-01'}]
@@ -73,11 +79,14 @@ let generateFilters = function(){
 }
 export default {
 	name: 'BusinessOrder',
-	components: {},
+	components: {
+        BusinessFormBox
+    },
 	data() {
 		return {
             // filters: [{text: '2016-05-02', value: '2016-05-02'}, {text: '2016-05-03', value: '2016-05-03'}, {text: '2016-05-04', value: '2016-05-04'}],
             filters: generateFilters(),
+            showBusinessOrderForm: false,
 			tableData: [{
 				date: '2016-05-01',
 				name: '智能手环',
@@ -149,11 +158,20 @@ export default {
         filterHandler(value, row, column) {
             const property = column['property'];
             return row[property] === value;
+        },
+        addBusinessOrder(){
+            this.showBusinessOrderForm = true;
+        },
+        updateShowBusinessOrderForm(val){
+            this.showBusinessOrderForm = val;;
         }
     }
 }
 </script>
 <style>
+    #business_order{
+        margin: 5px;
+    }
     .table-expand {
         font-size: 0;
     }
@@ -164,5 +182,9 @@ export default {
     .table-expand .el-form-item {
         margin-left: 50px;
         width: 40%;
+    }
+    li{
+        color: #ffffff;
+        cursor: pointer;
     }
 </style>
