@@ -36,3 +36,20 @@ ul,ol,li{
 	width: 100%;
 	z-index: 3;
 }
+
+.head-wrap{
+	background-color: rgba(0, 0, 0, .5);
+}
+.clearfix{
+	zoom: 1;
+}
+.clearfix:after{
+	content: '';
+	height: 0;
+	visibility: hidden;
+	clear: both;
+	display: block;
+}
+#app{
+	
+}

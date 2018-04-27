@@ -1,6 +1,9 @@
 <template>
     <!-- <div> -->
         <el-dialog title="新增业务订单" :visible="dialogFormVisible2" 
+            width="600px"
+            :lock-scroll="true"
+            :close-on-click-modal="false"
             :modal-append-to-body=false
             :close-on-press-escape=true
             :before-close="test"
@@ -63,6 +66,17 @@ export default{
     }
 }
 </script>
-<style>
-    
+<style lang="less">
+    @blue: #3366ff;
+    .el-dialog__body{
+        max-height: 400px;
+        overflow: auto;
+        border: 1px solid @blue;
+        border-right-width: 0;
+        border-left-width: 0;
+    }
+
+    .el-input{
+        // width: 80%;
+    }
 </style>

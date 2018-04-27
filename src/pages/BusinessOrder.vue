@@ -1,6 +1,6 @@
 <template>
-	<div id="business_order">
-        <ul>
+	<div id="business_order" class="clearfix">
+        <ul class="operate">
             <li @click="addBusinessOrder">新增业务单</li>
         </ul>
         <el-table
@@ -88,7 +88,7 @@ export default {
             filters: generateFilters(),
             showBusinessOrderForm: false,
 			tableData: [{
-				date: '2016-05-01',
+				date: '2016-04-28',
 				name: '智能手环',
 				goal_num: 100,
 				goal_days: 5,
@@ -104,7 +104,7 @@ export default {
 				payment: 8800,
 				half_payment: 5000
 			}, {
-				date: '2016-05-02',
+				date: '2016-04-27',
 				name: '智能手环',
 				goal_num: 100,
 				goal_days: 5,
@@ -120,7 +120,7 @@ export default {
 				payment: 8800,
 				half_payment: 5000
 			}, {
-				date: '2016-05-03',
+				date: '2016-04-26',
 				name: '智能手环',
 				goal_num: 100,
 				goal_days: 5,
@@ -136,7 +136,7 @@ export default {
 				payment: 8800,
 				half_payment: 5000
 			}, {
-				date: '2016-05-04',
+				date: '2016-04-25',
 				name: '智能手环',
 				goal_num: 100,
 				goal_days: 5,
@@ -170,6 +170,9 @@ export default {
 </script>
 <style>
     #business_order{
+        position: relative;
+        margin: 0 auto;
+        padding: 0 20px;
         margin: 5px;
     }
     .table-expand {
@@ -182,6 +185,12 @@ export default {
     .table-expand .el-form-item {
         margin-left: 50px;
         width: 40%;
+    }
+    ul.operate{
+        /*position: absolute;*/
+        float: right;
+        top: 0;
+        right: 0;
     }
     li{
         color: #ffffff;
