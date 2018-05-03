@@ -1,13 +1,18 @@
 <template>
 	<div id="business_order" class="clearfix">
         <ul class="operate">
-            <li @click="addBusinessOrder">新增业务单</li>
-            <li @click="export2exceal">导出excel</li>
+            <li> 
+                <el-button @click="addBusinessOrder" type="primary" size="mini" plain>新增业务单</el-button>
+            </li>
+            <li>
+                <el-button @click="export2exceal" type="primary" size="mini" plain>导出excel</el-button>
+            </li>
         </ul>
         <el-table
     	    :data="tableData"
     	    border
             stripe
+            size="mini"
     	    style="width: 100%">
             <el-table-column type="expand">
                 <template slot-scope="props">
@@ -43,7 +48,7 @@
             <!-- <el-table-column prop="complete" label="完成单数" align="right" width="100"></el-table-column> -->
             <el-table-column label="完成单数" align="right" width="100">
                 <template slot-scope="scope">
-                    <router-link to="aa" :businessId="scope.row.business_id ">{{ scope.row.complete }}</router-link>
+                    <router-link to="po" :businessId="scope.row.business_id ">{{ scope.row.complete }}</router-link>
                 </template> 
             </el-table-column>
             <el-table-column prop="goal_days" label="目标天数" align="right"  width="100"></el-table-column>
@@ -79,6 +84,22 @@ let generateFilters = function(){
     }
     return ary;
 }
+const table_key_desc = {
+    date: '创建时间',
+    name: "名称",
+    businessman: "业务员",
+    customer: "客户",
+    goal_num: "目标单数",
+    complete: "完成单数",
+    goal_days: "目标天数",
+    payment: "应付金额",
+    half_payment: "已付金额",
+    left: "剩余单数",
+    pic: "产品图片",
+    desc: "描述",
+    keywords: "关键字",
+    shop: "店铺名"
+};
 export default {
 	name: 'BusinessOrder',
 	components: {
@@ -182,36 +203,19 @@ export default {
                     URL.revokeObjectURL(obj); //用URL.revokeObjectURL()来释放这个object URL
                 }, 100);
             }
-            var jsono = [{ //测试数据
-                "保质期临期预警(天)": "adventLifecycle",
-                "商品标题": "title",
-                "建议零售价": "defaultPrice",
-                "高(cm)": "height",
-                "商品描述": "Description",
-                "保质期禁售(天)": "lockupLifecycle",
-                "商品名称": "skuName",
-                "商品简介": "brief",
-                "宽(cm)": "width",
-                "阿达": "asdz",
-                "货号": "goodsNo",
-                "商品条码": "skuNo",
-                "商品品牌": "brand",
-                "净容积(cm^3)": "netVolume",
-                "是否保质期管理": "isShelfLifeMgmt",
-                "是否串号管理": "isSNMgmt",
-                "商品颜色": "color",
-                "尺码": "size",
-                "是否批次管理": "isBatchMgmt",
-                "商品编号": "skuCode",
-                "商品简称": "shortName",
-                "毛重(g)": "grossWeight",
-                "长(cm)": "length",
-                "英文名称": "englishName",
-                "净重(g)": "netWeight",
-                "商品分类": "categoryId",
-                "这里超过了": 1111.0,
-                "保质期(天)": "expDate"
-            }];
+            var jsono;
+
+            var excelData = [];
+            var item;
+            for(var i = 0; i < this.tableData.length; i++){
+                var temp = {};
+                item = this.tableData[i];
+                for(var k in item){
+                    temp[table_key_desc[k]] = item[k];
+                }
+                excelData.push(temp);
+            }
+            jsono = excelData;
             const wopts = { bookType: 'xlsx', bookSST: false, type: 'binary' };//这里的数据是用来定义导出的格式类型
             // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//ods格式
             // const wopts = { bookType: 'ods', bookSST: false, type: 'binary' };//ods格式
@@ -222,7 +226,7 @@ export default {
             function downloadExl(data, type) {
                 const wb = { SheetNames: ['Sheet1'], Sheets: {}, Props: {} };
                 wb.Sheets['Sheet1'] = XLSX.utils.json_to_sheet(data);//通过json_to_sheet转成单页(Sheet)数据
-                saveAs(new Blob([s2ab(XLSX.write(wb, wopts))], { type: "application/octet-stream" }), "这里是下载的文件名" + '.' + (wopts.bookType=="biff2"?"xls":wopts.bookType));
+                saveAs(new Blob([s2ab(XLSX.write(wb, wopts))], { type: "application/octet-stream" }), "业务订单" + '.' + (wopts.bookType=="biff2"?"xls":wopts.bookType));
             }
             function s2ab(s) {
                 if (typeof ArrayBuffer !== 'undefined') {
@@ -241,7 +245,12 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="less">
+    /*@import '../static/css/reset_elementui.css'*/
+    @blue: #66b1ff;
+    a{
+        color: @blue;
+    }
     #business_order{
         position: relative;
         margin: 0 auto;

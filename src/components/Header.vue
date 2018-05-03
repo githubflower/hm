@@ -2,7 +2,7 @@
 	<div class="header-wrap">
 		<img id="logo" src="../assets/logo.png"/>
 		<ul>
-			<router-link to="/business" tag="li">业务概况</router-link>
+			<router-link to="/" tag="li">业务概况</router-link>
 		</ul>
 	</div>
 </template>
@@ -14,13 +14,16 @@
 <style>
 	.header-wrap{
 		position: relative;
-		height: 70px;
+		height: 60px;
 		border-bottom: 1px solid #ffffff;
 		color: #ffffff;
 	}
+	.header-wrap > ul{
+		padding-top: 10px;
+	}
 	#logo{
 		position: absolute;
-		top: 15px;
+		top: 10px;
 		left: 15px;
 		width: 40px;
 		height: 40px;
@@ -30,6 +33,6 @@
 	}
 	li{
 		display: inline-block;
-		padding: 20px;
+		padding: 5px 10px;
 	}
 </style>

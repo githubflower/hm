@@ -21,8 +21,8 @@
             </el-form-item>
           </el-form> -->
           <div slot="footer" class="dialog-footer">
-            <el-button @click="hide">取 消</el-button>
-            <el-button type="primary" @click="hide">确 定</el-button>
+            <el-button @click="hide" size="mini">取 消</el-button>
+            <el-button type="primary" size="mini" @click="hide">确 定</el-button>
           </div>
         </el-dialog>
     <!-- </div> -->
@@ -67,16 +67,16 @@ export default{
 }
 </script>
 <style lang="less">
-    @blue: #3366ff;
+    @blue: #66b1ff;
     .el-dialog__body{
-        max-height: 400px;
+        max-height: 350px;
         overflow: auto;
         border: 1px solid @blue;
         border-right-width: 0;
         border-left-width: 0;
     }
 
-    .el-input{
-        // width: 80%;
-    }
+    // .el-input{
+    //     width: 80%;
+    // }
 </style>

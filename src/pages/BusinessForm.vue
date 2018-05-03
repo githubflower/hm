@@ -3,12 +3,12 @@
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-form-item label="名称">
-                    <el-input v-model="form.name"></el-input>
+                    <el-input v-model="form.name" size="mini"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :span="12">
                 <el-form-item label="客户">
-                    <el-input v-model="form.customer"></el-input>
+                    <el-input v-model="form.customer" size="mini"></el-input>
                 </el-form-item>
             </el-col>
         </el-row>
@@ -16,17 +16,17 @@
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-form-item label="目标单数">
-                    <el-input v-model="form.goal_num"></el-input>
+                    <el-input v-model="form.goal_num" size="mini"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :span="12">
                 <el-form-item label="目标天数">
-                    <el-input v-model="form.goal_days"></el-input>
+                    <el-input v-model="form.goal_days" size="mini"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :span="8" v-if="false">
                 <el-form-item label="完成单数">
-                    <el-input v-model="form.complete" :disabled="true"></el-input>
+                    <el-input v-model="form.complete" :disabled="true" size="mini"></el-input>
                 </el-form-item>
             </el-col>
         </el-row>
@@ -34,17 +34,17 @@
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-form-item label="应付金额">
-                    <el-input v-model="form.payment"></el-input>
+                    <el-input v-model="form.payment" size="mini"></el-input>
                 </el-form-item>
             </el-col>
             <el-col :span="12">
                 <el-form-item label="已付金额">
-                    <el-input v-model="form.half_payment"></el-input>
+                    <el-input v-model="form.half_payment" size="mini"></el-input>
                 </el-form-item>
             </el-col>
         </el-row>
         <el-form-item label="店铺名">
-            <el-input v-model="form.shop"></el-input>
+            <el-input v-model="form.shop" size="mini"></el-input>
         </el-form-item>
         <el-form-item label="关键字">
             <el-input v-model="form.keywords" type="textarea"></el-input>

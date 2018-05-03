@@ -1,3 +1,22 @@
-.el-dialog{
-    width: 600px;
+
+#app .el-dialog{
+	    width: 600px;
+	}
+#app .el-dialog__body {
+	    padding: 10px 20px;
+	    font-size: 13px;
+	}
+#app .el-form-item {
+    margin-bottom: 5px;
+}
+
+#app .el-form-item__label{
+    font-size: 13px;
+}
+#app .el-dialog__header{
+    padding: 15px 20px 8px;
+    font-size: 16px;
+}
+#app .el-dialog__footer{
+    padding: 8px 20px 15px;
 }
