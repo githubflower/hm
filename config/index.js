@@ -10,7 +10,53 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        '/v3/geocode': {
+            target: 'http://restapi.amap.com/v3/geocode', //高德逆向地理编码
+            changeOrigin: true,
+            pathRewrite: {
+                '/v3/geocode': ''
+            },
+        },
+        '/env/dust/govern': {
+            // target: 'http://192.168.10.78:6268/env/dust/govern', //外网
+            target: 'http://192.168.10.165:6268/env/dust/govern', //内网
+            changeOrigin: true,
+            pathRewrite: {
+                '^/env/dust/govern': ''
+            },
+        },
+        '/env/dust/': {
+            // target: 'http://119.29.152.124:6268/env/dust/', //外网
+            target: 'http://192.168.10.165:6268/env/dust/', //内网
+            changeOrigin: true,
+            pathRewrite: {
+                '^/env/dust/': ''
+            },
+        },
+        '/eplogin': {
+            //target: 'https://login.thingspark.io/eplogin', //视频
+            target: 'https://login.thingspark.io/eplogin',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/eplogin': ''
+            },
+        },
+        '/env/dust2/': {
+            target: 'http://119.29.152.124:6262/env/dust2/', //外网--叶丰
+            changeOrigin: true,
+            pathRewrite: {
+                '^/env/dust2/': ''
+            },
+        },
+        '/env/atmosphere': {
+            target: 'http://119.29.152.124:6262/env/atmosphere',
+            changeOrigin: true,
+            pathRewrite: {
+                '^/env/atmosphere': ''
+            }
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
