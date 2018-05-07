@@ -67,8 +67,8 @@
 </template>
 <script>
 import Util from '../util.js'
-import BusinessFormBox from './BusinessFormBox.vue'
 import XLSX from 'xlsx';
+import BusinessFormBox from './BusinessFormBox.vue'
 /**
  * [generateFilters 生成最近7天的过滤日期]
  * @return {[type]} [description] 如[{text: '2016-05-01', value: '2016-05-01'}]
