@@ -112,8 +112,7 @@
                         });
                     }
                     var json_str = JSON.stringify(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]));
-                    debugger;
-                    document.getElementById("demo").innerHTML = JSON.stringify(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]));
+                    document.getElementById("demo").innerHTML = json_str;
                 };
                 if (rABS) reader.readAsBinaryString(f);
                 else reader.readAsArrayBuffer(f);
