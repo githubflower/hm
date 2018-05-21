@@ -1,15 +1,15 @@
 <template>
 	<div class="login-wrap">
 		<el-form ref="form" :model="form" label-width="80px">
-			<el-form-item label="用户名">
+			<el-form-item label="用户名" size="small">
                 <el-input v-model="form.name"></el-input>
             </el-form-item>
-            <el-form-item label="密码">
+            <el-form-item label="密码" size="small">
                 <el-input v-model="form.password" type="password"></el-input>
             </el-form-item>
 		</el-form>
         <div class="btn-wrap">
-            <el-button @click="login">登录</el-button>
+            <el-button @click="login"  size="small">登录</el-button>
             <!-- <el-button @click="regist">注册</el-button> -->
         </div>
 	</div>
